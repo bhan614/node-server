@@ -1,0 +1,10 @@
+.idea
+node_modules
+npm-debug.log
+server/config/index.js
+.DS_Store
+*/.DS_Store
+yarn.lock
+package
+package-lock.json
+dist

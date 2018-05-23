@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{title}}</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <!--360浏览器-->
+  <meta name="renderer" content="webkit">
+  <!--其它双核浏览器-->
+  <meta name="force-rendering" content="webkit">
+  <!--如果安装了GCF，则使用GCF来渲染页面，如果没有安装GCF，则使用最高版本的IE内核进行渲染。-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="icon" href="" type="image/x-icon">
+
+  <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=a/2*s*n+"px"},e.exports=t["default"]}]);
+  flex(100, 1);</script>
+  <style>
+    * {
+      box-sizing: border-box;
+      /* 在X5新内核Blink中，在排版页面的时候，会主动对字体进行放大，会检测页面中的主字体，当某一块字体在我们的判定规则中，认为字号较小，并且是页面中的主要字体，就会采取主动放大的操作。然而这不是我们想要的，可以采取给最大高度解决 */
+      max-height: 100000px;
+    }
+
+    *:before, *:after {
+      box-sizing: border-box;
+      max-height: 100000px;
+    }
+
+    *, *:before, *:after {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th,textarea, td {
+      border: 0 none;
+      font-size: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0;
+      vertical-align: baseline;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+    }
+
+    em, strong {
+      font-style: normal;
+    }
+
+    ul, ol, li {
+      list-style: none;
+    }
+    html,body{
+      width: 100%;
+    }
+    body {
+      font-family: 'PingFangSC-Light', 'STHeiti', 'Microsoft YaHei', 'SimSun', 'Arial' !important;
+      line-height: 1.5;
+      color: #333;
+      background-color: #efeff4;
+      font-size: 0.24rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+  <style>
+    #layout{
+      width: 100%;
+      /*font-size: .12rem;*/
+    }
+    #header h1{
+      font-size: .46rem;
+      line-height: 1.5;
+      font-weight: 700;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #header .post-add-info{
+      color: #999;
+      padding: 10px 0;
+      border-bottom: .01rem solid #e5e5e5;
+    }
+    #header .post-add-info{
+      font-size: .24rem;
+      line-height: 1.2;
+    }
+
+    #header .post-add-info .span1{
+       display: inline-block;
+       margin-left: 0.5rem;
+    }
+    #article{
+      background-color:rgb(255,255,255);
+      padding:0 7rem 0 7rem;
+    }
+    #article .post-content p{
+      padding: .2rem 0;
+      text-indent: 2em;
+    }
+    #article .post-content img {
+      display:inline-block;
+      margin: 0 auto;
+      text-align: center;
+    },
+    #article .post-content p span{
+      font-size: .32rem;
+      line-height: 1.5;
+      color: #222;
+      text-indent: 2em;
+    }
+    .layout{
+      background-color: rgb(246,247,251);
+    }
+  </style>
+  {{{links}}}
+</head>
+<body>
+<div id="layout" class='layout'>
+  <article id="article" class='article'>
+    <header id="header">
+      <h1>{{title}}</h1>
+      <div class="post-add-info">
+        <span class="span1"><strong>{{source}}</strong> </span>
+        <span class="span1"><strong>{{createTime}}</strong> </span>
+      </div>
+    </header>
+    <section class="post-content">
+      {{{content}}}
+    </section>
+  </article>
+</div>
+{{{scripts}}}
+{{#if post.post_wxshare}}
+  <script type="text/javascript" id="wx-share">
+    var ua = navigator.userAgent.toLowerCase()
+    var regex = new RegExp('micromessenger', 'g')
+    var inWechat = regex.test(ua)
+    if (inWechat) {
+      (function() {
+        var hmjs = document.createElement('script'); hmjs.type = 'text/javascript';
+        //enter url of script here
+        hmjs.src = 'https://res.wx.qq.com/open/js/jweixin-1.0.0.js';
+        var st = document.getElementById('wx-share'); st.parentNode.insertBefore(hmjs, st);
+      })();
+      var jsApiList = [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'onMenuShareQZone',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        'translateVoice',
+        'startRecord',
+        'stopRecord',
+        'onVoiceRecordEnd',
+        'playVoice',
+        'onVoicePlayEnd',
+        'pauseVoice',
+        'stopVoice',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'openProductSpecificView',
+      ]
+      var xhr = new XMLHttpRequest();
+      var url = location.origin + location.pathname + location.search;
+      var query = '{{post.post_wxurl}}' ? '{{post.post_wxurl}}' : url;
+      var port = location.port
+      var host = 'wx.bkjk.com';
+      var host1 = 'http://' + host + ':' + port;
+      var host2 = 'https://' + host;
+      var preApi = port ? host1 : host2;
+      var signUrl = preApi + '/signature?returnUrl=' + query;
+      xhr.open('get', signUrl, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            let data = null
+            try {
+              data = JSON.parse(xhr.responseText)
+            } catch (e) {
+              console.log(e)
+            } finally {
+              if (data && data.code !== 0) {
+                wx.config({
+                  debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                  appId: data.appid, // 必填，公众号的唯一标识
+                  timestamp: data.timestamp, // 必填，生成签名的时间戳
+                  nonceStr: data.nonceStr, // 必填，生成签名的随机串
+                  signature: data.signature,// 必填，签名，见附录1
+                  jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                })
+                wx.ready(function () {
+                  var link = url;
+                  var title = '{{post.post_wxtitle}}';
+                  var desc = '{{post.post_wxdes}}';
+                  var imgUrl = '{{post.post_wxthumbnail}}';
+                  //分享到朋友圈
+                  wx.onMenuShareTimeline({
+
+                    title: title, // 分享标题
+
+                    link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+
+                    imgUrl: imgUrl, // 分享图标
+
+                    success: function () {
+
+                      // 用户确认分享后执行的回调函数
+
+                    },
+
+                    cancel: function () {
+
+                      // 用户取消分享后执行的回调函数
+
+                    }
+
+                  })
+                  //分享给朋友
+                  wx.onMenuShareAppMessage({
+
+                    title: title, // 分享标题
+
+                    desc: desc, // 分享描述
+
+                    link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+
+                    imgUrl: imgUrl, // 分享图标
+
+                    type: 'link', // 分享类型,music、video或link，不填默认为link
+
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+
+                    success: function () {
+
+                      // 用户确认分享后执行的回调函数
+
+                    },
+
+                    cancel: function () {
+
+                      // 用户取消分享后执行的回调函数
+
+                    }
+
+                  })
+                })
+              }
+            }
+          }
+        }
+      }
+      xhr.send(null)
+    }
+  </script>
+{{/if}}
+
+</body>
+</html>
